@@ -30,7 +30,7 @@ svg {
 }
 
 #log {
-    height: 300px;
+    height: 250px;
     overflow-y: auto;
     background: #f4f4f4;
     border: 1px solid #ccc;

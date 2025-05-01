@@ -84,19 +84,8 @@ function logAxisSummary(gp) {
   const rightY = gp.axes[3].toFixed(2);
   const now = new Date().toLocaleTimeString();
 
-  const msg = `🕹️ (${now}) 🎯 Left (x, y): ${leftX}, ${leftY} / Right (x, y): ${rightX}, ${rightY}`;
+  const msg = `🕹️ Left (x, y): ${leftX}, ${leftY} / Right (x, y): ${rightX}, ${rightY}`;
   logMessage(msg);
-}
-
-function updateAxisSummary(gp) {
-  const leftX = gp.axes[0].toFixed(2);
-  const leftY = gp.axes[1].toFixed(2);
-  const rightX = gp.axes[2].toFixed(2);
-  const rightY = gp.axes[3].toFixed(2);
-  const now = new Date().toLocaleTimeString();
-
-  const summaryText = `🕹️ Left (x, y): ${leftX}, ${leftY} / Right (x, y): ${rightX}, ${rightY}`;
-  document.getElementById("axis-log-summary").textContent = summaryText;
 }
 
 let lastLoggedAxis = { left: { x: 0, y: 0 }, right: { x: 0, y: 0 } };
@@ -120,7 +109,7 @@ function logAxisIfMax(gp, forceLog = false) {
   // 강제 로그가 true여도 움직임 없으면 로그 출력하지 않음
   if ((leftChanged || rightChanged || forceLog) && hasMovement) {
     const now = new Date().toLocaleTimeString();
-    const msg = `🕹️ (${now}) 🎯 Left (x, y): ${left.x.toFixed(2)}, ${left.y.toFixed(2)} / Right (x, y): ${right.x.toFixed(2)}, ${right.y.toFixed(2)}`;
+    const msg = `🕹️  Left (x, y): ${left.x.toFixed(2)}, ${left.y.toFixed(2)} / Right (x, y): ${right.x.toFixed(2)}, ${right.y.toFixed(2)}`;
     logMessage(msg);
     lastLoggedAxis.left = left;
     lastLoggedAxis.right = right;
@@ -144,18 +133,16 @@ function updateStatus() {
     
       if (pressed && !prev) {
         const name = buttonNames[index] || `Button ${index}`;
-        logMessage(`⬇️ ${name} (Button ${index}) down`);
+        logMessage(`🔻 ${name} (Button ${index}) down`);
         buttonChanged = true;
       } else if (!pressed && prev) {
         const name = buttonNames[index] || `Button ${index}`;
-        logMessage(`⬆️ ${name} (Button ${index}) up`);
+        logMessage(`🔼 ${name} (Button ${index}) up`);
         buttonChanged = true;
       }
     
-      // 상태 갱신은 무조건
       buttonStates[gp.index][index] = pressed;
       
-      // ✅ 버튼 라이트 업데이트
       const el = document.querySelector(`.button-indicator[data-btn="${index}"]`);
       if (el) {
         el.classList.toggle("active", pressed);
@@ -166,11 +153,8 @@ function updateStatus() {
       logAxisIfMax(gp, true); // 버튼이 눌릴 때는 무조건 기록
     } else {
       logAxisIfMax(gp); // 변경이 클 때만 기록
-      updateAxisSummary(gp); // UI의 현재값은 항상 갱신
     }
     
-    
-
     updateStickVisual(gp);
     updateStickTooltip(gp);
   }
