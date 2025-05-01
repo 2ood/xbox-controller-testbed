@@ -12,17 +12,6 @@ h2 {
     margin-bottom: 1em;
 }
 
-#log {
-    border: 1px solid #ddd;
-    background-color: #fff;
-    padding: 1em;
-    max-height: 80vh;
-    overflow-y: auto;
-    white-space: pre-wrap;
-    font-family: 'Consolas', monospace;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
 .timestamp {
     color: #aaa;
 }
@@ -39,3 +28,169 @@ svg {
 .pressed {
     fill: #ff5252; /* active color */
 }
+
+#log {
+    height: 300px;
+    overflow-y: auto;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+  }
+
+  #axis-visualizer {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+  }
+  
+  .axis-value {
+    font-size: 0.75rem;
+    color: #444;
+    text-align: center;
+    margin-top: 4px;
+  }
+  
+  
+  #toggle-log-btn {
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  
+  #log.hidden {
+    display: none;
+  }
+
+  #axis-log-summary {
+    margin: 1rem 0;
+    font-family: monospace;
+    color: #444;
+  }
+  
+  
+  #controller-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  #top-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  #top-of-top, #bottom-of-top {
+    display : flex;
+    flex-direction : row;
+    justify-content: space-between;
+    gap : 8px;
+  }
+  
+  
+  #middle-and-bottom-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    gap: 60px;
+  }
+
+  #bottom-buttons {
+    display : flex;
+    flex-direction : row;
+    align-items: center;
+    gap : 60px;
+    padding-top : 120px;
+  }
+  
+  #left-stick-area, #right-stick-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  #dpad {
+    display: inline-grid;
+    grid-template-areas:
+      ". up ."
+      "left . right"
+      ". down .";
+    gap: 5px;
+  }
+
+  #dpad [data-btn="12"] { grid-area: up; }
+  #dpad [data-btn="13"] { grid-area: down; }
+  #dpad [data-btn="14"] { grid-area: left; }
+  #dpad [data-btn="15"] { grid-area: right; }
+  
+  #abxy {
+    display: inline-grid;
+    grid-template-areas:
+      ". y ."
+      "x . b"
+      ". a .";
+    gap: 5px;
+  }
+  #abxy [data-btn="0"] { grid-area: a; background-color: green;}
+  #abxy [data-btn="1"] { grid-area: b; background-color: red;}
+  #abxy [data-btn="2"] { grid-area: x; background-color: blue;}
+  #abxy [data-btn="3"] { grid-area: y; background-color: gold;}
+  
+  #abxy [data-btn="0"].active { background-color: lightgreen;}
+  #abxy [data-btn="1"].active { background-color: orangered;}
+  #abxy [data-btn="2"].active { background-color: lightskyblue;}
+  #abxy [data-btn="3"].active { background-color: yellow; color: goldenrod;}
+  #abxy .active {border-color: #f9f9f9;}
+
+  #dpad, #abxy {
+    width : 200px;
+    height : 200px;
+  }
+  
+  .button-indicator {
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 38px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background-color: #eee;
+    display : inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size : 1.1rem;
+  }
+
+  .button-indicator.active {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #388E3C;
+  }
+
+  .stick {
+    width: 120px;
+    height: 120px;
+    background-color: #e0e0e0;
+    border: 3px solid #aaa;
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .dot {
+    width: 20px;
+    height: 20px;
+    background-color: #2196F3;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

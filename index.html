@@ -1,68 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Xbox Controller Tester</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Xbox Controller Tester</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>🎮 Xbox Controller Input Logger</h2>
-    <div id="log">Waiting for controller input...</div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
-        <!-- Central Body -->
-        <rect x="50" y="20" width="200" height="80" rx="15" ry="15" fill="#333" />
+  <h2>🎮 Xbox 360 Controller Input Logger</h2>
+  
+  <div id="controller-layout">
+    <div id="top-buttons">
+        <div id="top-of-top">
+            <div class="button-indicator" data-btn="6">LT</div>
+            <div class="button-indicator" data-btn="7">RT</div>
+        </div>
+        <div id="bottom-of-top">
+            <div class="button-indicator" data-btn="4">LB</div>
+            <div class="button-indicator" data-btn="8">View</div>
+            <div class="button-indicator" data-btn="16">Xbox</div>
+            <div class="button-indicator" data-btn="9">Menu</div>
+            <div class="button-indicator" data-btn="5">RB</div>
+        </div>
+      </div>
       
-        <!-- Left Horn Handle (overlapping the body) -->
-        <path d="M50,20
-                 C20,40 20,180 80,180
-                 L80,20
-                 L50,20
-                 Z"
-              fill="#333" />
+    <div id="middle-and-bottom-buttons">
+      <div id="left-stick-area">
+        <div class="stick button-indicator" id="left-stick" data-btn="10"><div class="dot" id="left-dot"></div></div>
+        <div class="axis-value" id="left-axis-value">X: 0.00, Y: 0.00</div>
+      </div>
       
-        <!-- Right Horn Handle (overlapping the body) -->
-        <path d="M250,20
-                 C280,40 280,180 220,180
-                 L220,20
-                 L250,20
-                 Z"
-              fill="#333" />
+      <div id="bottom-buttons">
+        <div id="dpad">
+            <div class="button-indicator" data-btn="12">↑</div>
+            <div class="button-indicator" data-btn="14">←</div>
+            <div class="button-indicator" data-btn="13">↓</div>
+            <div class="button-indicator" data-btn="15">→</div>
+          </div>
       
-        <!-- Left Thumbstick -->
-        <circle id="button0" cx="110" cy="60" r="12" fill="#4b4b4b" class="button"/>
-        <!-- Right Thumbstick -->
-        <circle id="button1" cx="190" cy="60" r="12" fill="#4b4b4b" class="button" />
-      
-        <!-- D-Pad -->
-        <circle id="button2" cx="80" cy="60" r="15" fill="#4b4b4b" class="button"/>
-        <path d="M80,45 L80,75 L65,60 L95,60 Z" fill="#fff"/>
-      
-        <!-- A Button -->
-        <circle id="button3"  cx="230" cy="80" r="12" fill="#107C10" class="button"/>
-        <text x="230" y="84" font-family="Arial" font-size="10" fill="white" text-anchor="middle">A</text>
-      
-        <!-- B Button -->
-        <circle id="button4" cx="250" cy="60" r="12" fill="#D62828" class="button"/>
-        <text x="250" y="64" font-family="Arial" font-size="10" fill="white" text-anchor="middle">B</text>
-      
-        <!-- X Button -->
-        <circle id="button5" cx="210" cy="60" r="12" fill="#0078D7" class="button"/>
-        <text x="210" y="64" font-family="Arial" font-size="10" fill="white" text-anchor="middle">X</text>
-      
-        <!-- Y Button -->
-        <circle id="button6" cx="230" cy="40" r="12" fill="#FFD700" class="button"/>
-        <text x="230" y="44" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Y</text>
-      
-        <!-- Xbox Guide Button -->
-        <circle id="button7" cx="150" cy="60" r="10" fill="#fff" class="button"/>
-        <text x="150" y="64" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">X</text>
-      
-        <!-- Menu / Back Buttons -->
-        <circle id="button8" cx="130" cy="40" r="5" fill="#4b4b4b" class="button"/>
-        <circle id="button9" cx="170" cy="40" r="5" fill="#4b4b4b" class="button"/>
-      </svg>
-    <script src="x_input_detect.js"></script>
-    <script src="virtual_controller.js"></script>
+          <div id="right-stick-area">
+            <div class="stick button-indicator" id="right-stick" data-btn="11"><div class="dot" id="right-dot"></div></div>
+            <div class="axis-value" id="right-axis-value">X: 0.00, Y: 0.00</div>
+          </div>
+      </div>
+      <div id="abxy">
+        <div class="button-indicator" data-btn="3">Y</div>
+        <div class="button-indicator" data-btn="1">B</div>
+        <div class="button-indicator" data-btn="2">X</div>
+        <div class="button-indicator" data-btn="0">A</div>
+      </div>
+    </div>
+  </div>
+  <div id="axis-log-summary"></div>
+  <button id="toggle-log-btn">📝 Toggle Log View</button>
+    <div id="log" class="hidden">Waiting for controller input...</div>
+    
+
+  <script src="x_input_detect.js"></script>
+  <script src="virtual_controller.js"></script>
 </body>
 </html>
